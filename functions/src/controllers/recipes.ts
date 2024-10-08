@@ -32,19 +32,15 @@ export const getUserRecipes: HTTPHandler = async (req, res) => {
 };
 
 
-export const getFavoriteRecipes: HTTPHandler = async (req, res) => {
-    try {
-        await establishConnection();
-        const favoriteRecipes = await Recipe.find({ 
-            createdBy: req.params.userId, 
-            isFavorite: true 
-        });
-        res.status(200).send(favoriteRecipes);
-    } catch (err) {
-        res.status(500).send("Server Error");
-    }
+export const getUserFavorites: HTTPHandler = async (req, res) => {
+	try {
+	  await establishConnection(); 
+	  const userFavorites = await Recipe.find({ isFavorite: true }); 
+	  res.status(200).send(userFavorites);
+	} catch (err) {
+	  res.status(500).send("Error fetching favorites");
+	}
 };
-
 
 // READ 1
 export const getRecipe: HTTPHandler = async (req, res) => {

@@ -4,9 +4,9 @@ import {
     getRecipe,
     getRecipes,
     putRecipe,
-    deleteRecipe
+    deleteRecipe,
+    getUserFavorites
 } from "../controllers/recipes"
-import { getFavoriteRecipes } from "../controllers/recipes";
 
 const routes = Router()
 
@@ -15,6 +15,6 @@ routes.get("/:id", getRecipe)
 routes.get("/", getRecipes)
 routes.put("/:id", putRecipe)
 routes.delete("/:id", deleteRecipe)
-routes.get("/favorites/:userId", getFavoriteRecipes)
+routes.get("/favorites", getUserFavorites)
 
 export default routes
