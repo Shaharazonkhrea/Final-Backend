@@ -1,5 +1,15 @@
 import { Schema, model } from "mongoose"
 
+interface Recipe extends Document {
+    title: string;
+    ingredients: string;
+    steps: string;
+    isFavorite: boolean;
+    category?: string; 
+    imageUrl: string;
+    createdBy: string;
+}
+
 const RecipeSchema = new Schema(
 	{
 		title: {
@@ -25,6 +35,10 @@ const RecipeSchema = new Schema(
         },
         imageUrl: {
             type: String,
+            required: true
+        },
+        createdBy: { 
+            type: String, 
             required: true
         }
 	},
