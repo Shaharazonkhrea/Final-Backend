@@ -2,12 +2,12 @@ import { Schema, model } from "mongoose"
 
 interface Recipe extends Document {
     title: string;
-    ingredients: string;
+    ingredients?: string;
     steps: string;
-    isFavorite: boolean;
+    isFavorited?: boolean;
     category?: string; 
     imageUrl: string;
-    createdBy: string;
+    createdBy?: string;
 }
 
 const RecipeSchema = new Schema(
@@ -18,13 +18,13 @@ const RecipeSchema = new Schema(
         },
         ingredients: {
             type: String,
-            required: true
+            required: false
         },
         steps: {
             type: String,
-            required: true
+            required: false
         },
-        isFavorite: {
+        isFavorited: {
             type: Boolean,
             required: true,
             default: false
@@ -39,7 +39,7 @@ const RecipeSchema = new Schema(
         },
         createdBy: { 
             type: String, 
-            required: true
+            required: false
         }
 	},
 	{ timestamps: true }
