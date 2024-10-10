@@ -35,14 +35,12 @@ export const getUserRecipes: HTTPHandler = async (req, res) => {
 export const getUserFavorites: HTTPHandler = async (req, res) => {
 	try {
 	  await establishConnection(); 
-	  const userFavorites = await Recipe.find({
-		createdBy: req.params.userId,  
-		isFavorite: true,              
+	  const userFavorites = await Recipe.find({ 
+		isFavorited: true,              
 	  });
   
 	  res.status(200).send(userFavorites);
 	} catch (err) {
-	  console.error("Error fetching user favorites:", err);
 	  res.status(500).send("Error fetching favorites");
 	}
   };
@@ -56,7 +54,7 @@ export const toggleFavorite: HTTPHandler = async (req, res) => {
 	  if (!recipe) {
         throw new Error();
     }
-	  recipe.isFavorite = !recipe.isFavorite;
+	  recipe.isFavorited = !recipe.isFavorited;
     await recipe.save();
 
     res.status(200).send(recipe);
