@@ -54,8 +54,8 @@ export const toggleFavorite: HTTPHandler = async (req, res) => {
 	  const recipe = await Recipe.findById(req.params.id);
   
 	  if (!recipe) {
-		return res.status(404).send("Recipe Not Found");
-	  }
+        throw new Error();
+    }
 	  recipe.isFavorite = !recipe.isFavorite;
     await recipe.save();
 
