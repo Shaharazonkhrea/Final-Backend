@@ -2,6 +2,7 @@ import * as functions from "firebase-functions"
 import express from "express"
 import cors from "cors"
 import recipeRouter from "./routes/recipes"
+import userRouter from "./routes/users"
 
 // CONFIG
 
@@ -17,6 +18,7 @@ app.use(
 
 // PUBLIC ROUTES
 app.use("/recipes", recipeRouter)
+app.use("/users", userRouter)
 
 // OPTIONS
 app.options("*", cors())
