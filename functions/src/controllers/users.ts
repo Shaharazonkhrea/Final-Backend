@@ -4,15 +4,17 @@ import HTTPHandler from "../interfaces/HTTPHandler";
 
 // CREATE
 export const postUser: HTTPHandler = async (req, res) => {
+    const { uid, displayName, email } = req.body
+
     try {
         await establishConnection();
 
-        const user = new User({
-            ...req.body,
-			createdBy: req.body.createdBy
-        });
+        let user = await User.findOne({ uid })
 
-        await user.save(); 
+        if (!user) {
+            user = new User({ uid, displayName, email })
+            await user.save()
+        }
 
         res.status(201).send(user); 
     } catch (err) {
