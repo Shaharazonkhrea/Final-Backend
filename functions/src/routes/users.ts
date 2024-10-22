@@ -10,7 +10,7 @@ import {
 const routes = Router()
 
 routes.post("/", postUser)
-routes.get("/:id", getUser)
+routes.get("/:uid", getUser)
 routes.get("/", getUsers)
 routes.put("/:id", putUser)
 routes.delete("/:id", deleteUser)
